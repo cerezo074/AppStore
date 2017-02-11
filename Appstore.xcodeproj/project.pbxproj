@@ -21,6 +21,13 @@
 		459B09DA1E4F6E9600C79478 /* AppDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09D91E4F6E9600C79478 /* AppDetailPresenter.swift */; };
 		459B09DC1E4F6EC700C79478 /* SyncPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09DB1E4F6EC700C79478 /* SyncPresenter.swift */; };
 		459B09DE1E4F73DC00C79478 /* UIViewController+flowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09DD1E4F73DC00C79478 /* UIViewController+flowController.swift */; };
+		459B09E21E4F7EDC00C79478 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459B09E01E4F7EDC00C79478 /* AlamofireImage.framework */; };
+		459B09E31E4F7EDC00C79478 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459B09E11E4F7EDC00C79478 /* Alamofire.framework */; };
+		459B09E51E4F7F3500C79478 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459B09E01E4F7EDC00C79478 /* AlamofireImage.framework */; };
+		459B09E61E4F7F3500C79478 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459B09E11E4F7EDC00C79478 /* Alamofire.framework */; };
+		459B09EA1E4F7FF500C79478 /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09E91E4F7FF500C79478 /* ItunesService.swift */; };
+		459B09EC1E4F803C00C79478 /* AppsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09EB1E4F803C00C79478 /* AppsDownloader.swift */; };
+		459B09EF1E4F807F00C79478 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09EE1E4F807F00C79478 /* App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +59,11 @@
 		459B09D91E4F6E9600C79478 /* AppDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDetailPresenter.swift; path = Presenters/AppDetailPresenter.swift; sourceTree = "<group>"; };
 		459B09DB1E4F6EC700C79478 /* SyncPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncPresenter.swift; path = Presenters/SyncPresenter.swift; sourceTree = "<group>"; };
 		459B09DD1E4F73DC00C79478 /* UIViewController+flowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+flowController.swift"; path = "Routers/UIViewController+flowController.swift"; sourceTree = "<group>"; };
+		459B09E01E4F7EDC00C79478 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		459B09E11E4F7EDC00C79478 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		459B09E91E4F7FF500C79478 /* ItunesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItunesService.swift; path = Services/ItunesService.swift; sourceTree = "<group>"; };
+		459B09EB1E4F803C00C79478 /* AppsDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsDownloader.swift; path = Services/Adapters/AppsDownloader.swift; sourceTree = "<group>"; };
+		459B09EE1E4F807F00C79478 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = Models/App.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459B09E21E4F7EDC00C79478 /* AlamofireImage.framework in Frameworks */,
+				459B09E31E4F7EDC00C79478 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459B09E51E4F7F3500C79478 /* AlamofireImage.framework in Frameworks */,
+				459B09E61E4F7F3500C79478 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +94,7 @@
 				459B09A11E4F67FC00C79478 /* Appstore */,
 				459B09B61E4F67FD00C79478 /* AppstoreTests */,
 				459B09A01E4F67FC00C79478 /* Products */,
+				459B09DF1E4F7EDB00C79478 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +143,7 @@
 		459B09C31E4F686600C79478 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				459B09EE1E4F807F00C79478 /* App.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -143,6 +161,8 @@
 		459B09C51E4F687500C79478 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				459B09ED1E4F804600C79478 /* Adapters */,
+				459B09E91E4F7FF500C79478 /* ItunesService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -176,6 +196,23 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		459B09DF1E4F7EDB00C79478 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				459B09E01E4F7EDC00C79478 /* AlamofireImage.framework */,
+				459B09E11E4F7EDC00C79478 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		459B09ED1E4F804600C79478 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				459B09EB1E4F803C00C79478 /* AppsDownloader.swift */,
+			);
+			name = Adapters;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,6 +223,7 @@
 				459B099B1E4F67FC00C79478 /* Sources */,
 				459B099C1E4F67FC00C79478 /* Frameworks */,
 				459B099D1E4F67FC00C79478 /* Resources */,
+				459B09E41E4F7EE300C79478 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -274,13 +312,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		459B09E41E4F7EE300C79478 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		459B099B1E4F67FC00C79478 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459B09EF1E4F807F00C79478 /* App.swift in Sources */,
 				459B09A31E4F67FD00C79478 /* AppDelegate.swift in Sources */,
 				459B09D01E4F698300C79478 /* Segues.swift in Sources */,
+				459B09EC1E4F803C00C79478 /* AppsDownloader.swift in Sources */,
+				459B09EA1E4F7FF500C79478 /* ItunesService.swift in Sources */,
 				459B09D81E4F6E8100C79478 /* ListAppsPresenter.swift in Sources */,
 				459B09CE1E4F692800C79478 /* AppstoreFlowController.swift in Sources */,
 				459B09D61E4F6CDB00C79478 /* AppDetailViewController.swift in Sources */,
@@ -408,6 +467,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Appstore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = example.Appstore;
@@ -420,6 +483,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Appstore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = example.Appstore;
@@ -433,6 +500,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AppstoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = example.AppstoreTests;
@@ -447,6 +518,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AppstoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = example.AppstoreTests;
@@ -475,6 +550,7 @@
 				459B09BE1E4F67FD00C79478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		459B09BF1E4F67FD00C79478 /* Build configuration list for PBXNativeTarget "AppstoreTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +559,7 @@
 				459B09C11E4F67FD00C79478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
