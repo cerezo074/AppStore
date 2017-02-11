@@ -28,6 +28,7 @@
 		459B09EA1E4F7FF500C79478 /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09E91E4F7FF500C79478 /* ItunesService.swift */; };
 		459B09EC1E4F803C00C79478 /* AppsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09EB1E4F803C00C79478 /* AppsDownloader.swift */; };
 		459B09EF1E4F807F00C79478 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09EE1E4F807F00C79478 /* App.swift */; };
+		459B09F31E4FA01100C79478 /* DiskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09F21E4FA01100C79478 /* DiskRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		459B09E91E4F7FF500C79478 /* ItunesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItunesService.swift; path = Services/ItunesService.swift; sourceTree = "<group>"; };
 		459B09EB1E4F803C00C79478 /* AppsDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsDownloader.swift; path = Services/Adapters/AppsDownloader.swift; sourceTree = "<group>"; };
 		459B09EE1E4F807F00C79478 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = Models/App.swift; sourceTree = "<group>"; };
+		459B09F21E4FA01100C79478 /* DiskRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskRepository.swift; path = Services/DiskRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			children = (
 				459B09ED1E4F804600C79478 /* Adapters */,
 				459B09E91E4F7FF500C79478 /* ItunesService.swift */,
+				459B09F21E4FA01100C79478 /* DiskRepository.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				459B09EC1E4F803C00C79478 /* AppsDownloader.swift in Sources */,
 				459B09EA1E4F7FF500C79478 /* ItunesService.swift in Sources */,
 				459B09D81E4F6E8100C79478 /* ListAppsPresenter.swift in Sources */,
+				459B09F31E4FA01100C79478 /* DiskRepository.swift in Sources */,
 				459B09CE1E4F692800C79478 /* AppstoreFlowController.swift in Sources */,
 				459B09D61E4F6CDB00C79478 /* AppDetailViewController.swift in Sources */,
 				459B09DC1E4F6EC700C79478 /* SyncPresenter.swift in Sources */,
