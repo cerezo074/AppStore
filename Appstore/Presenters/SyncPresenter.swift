@@ -31,17 +31,14 @@ struct SyncPresenter {
         itunesService.downloadApps(amount: 50) { response in
             switch response {
             case .success(apps: let apps):
-                self.repositoryService.saveApps(app: apps, completion: { (result) in
-                    switch result {
-                    case .error(let message):
-                        print("Error saving data: " + message)
-                        break
-                    case .success:
+                self.repositoryService.saveApps(apps: apps, completion: { (result, errorDetail) in
+                    guard let error = errorDetail else {
                         print("Data was saved!")
-                        break
+                        return
                     }
-                    self.view.dataWasDownloaded(apps: apps)
+                    print("Error saving data: " + error.localizedDescription)
                 })
+                self.view.dataWasDownloaded(apps: apps)
                 break
             case .notConnectedToInternet, .failure:
                 guard let dataFromDisk = self.repositoryService.loadApps() else {

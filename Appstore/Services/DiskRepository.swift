@@ -8,12 +8,10 @@
 
 import Foundation
 
-enum DataSaveResult {
-    case success
-    case error(message: String)
-}
-
 protocol DiskRepositoryProtocol {
-    func saveApps(app: [App], completion: (DataSaveResult) -> Void)
+    typealias PerformTaskBlock = (_ completed: Bool, _ error: Error?) -> Void
+    typealias PerformTaskWithResultBlock = (_ result: Any?, _ error: Error?) -> Void
+    typealias PerformTaskWithMultipleResultBlock = (_ result: [Any]?, _ error: Error?) -> Void
+    func saveApps(apps: [App], completion: @escaping PerformTaskBlock)
     func loadApps() -> [App]?
 }

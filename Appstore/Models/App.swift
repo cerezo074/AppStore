@@ -20,6 +20,10 @@ struct App {
     var rights: String = ""
     var iconURL: URL?
     
+    init() {
+        
+    }
+    
     init(dict: NSDictionary) {
         
         if let appstoreID = dict.value(forKeyPath: "id.attributes.im:id") as? String {

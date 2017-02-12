@@ -22,7 +22,7 @@ struct AppstoreFlowController {
         prepareForSync()
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue) {
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         guard let identifier = segue.identifier else { return }
         let destination = segue.destination
@@ -30,7 +30,8 @@ struct AppstoreFlowController {
         
         switch identifier {
         case Segues.listApps:
-            prepareForListApps(sourceVC: source, destinationVC: destination)
+            guard let apps = sender as? [App] else { break }
+            prepareForListApps(with: apps, destinationVC: destination)
             break
         case Segues.appDetail:
             prepareForDetail(sourceVC: source, destinationVC: destination)
@@ -51,19 +52,26 @@ private extension AppstoreFlowController {
         }
         
         navVC.isNavigationBarHidden = true
-        
+        syncVC.flowDelegate = self
         let itunesServer = AppsDownloader()
-        let repositoryServer = fakeRepositoryServer()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let appsCoreDataStack = appDelegate.appsCoreDataStack else {
+                return
+        }
+        
+        let repositoryServer = AppsCoreDataDAO(dataSource: appsCoreDataStack)
         let syncPresenter = SyncPresenter(view: syncVC,
                                       itunesService: itunesServer,
                                       repositoryService: repositoryServer)
         syncVC.syncPresenter = syncPresenter
     }
     
-    func prepareForListApps(sourceVC: UIViewController, destinationVC: UIViewController) {
+    func prepareForListApps(with apps: [App], destinationVC: UIViewController) {
         hideNavBar(hide: false)
         guard let listAppsVC = destinationVC as? ListAppsViewController else { return }
-        let listAppsPresenter = ListAppsPresenter()
+
+        let listAppsPresenter = ListAppsPresenter(apps: apps)
         listAppsVC.listAppsPresenter = listAppsPresenter
     }
     
@@ -80,4 +88,10 @@ private extension AppstoreFlowController {
         navVC.isNavigationBarHidden = hide
     }
     
+}
+
+extension AppstoreFlowController: SyncViewControllerFlowDelegate {
+    func appWasSynced(on syncVC: SyncViewController, apps: [App]) {
+        syncVC.performSegue(withIdentifier: Segues.listApps, sender: apps)
+    }
 }

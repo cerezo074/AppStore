@@ -9,5 +9,9 @@
 import Foundation
 
 struct ListAppsPresenter {
+    var apps: [App]
     
+    init(apps: [App]) {
+        self.apps = apps
+    }
 }

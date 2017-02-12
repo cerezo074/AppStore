@@ -11,6 +11,7 @@ import UIKit
 class ListAppsViewController: UIViewController {
 
     var listAppsPresenter: ListAppsPresenter!
+    var flowDelegate: BaseFlow?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class ListAppsViewController: UIViewController {
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        flowController?.prepareForSegue(segue: segue)
+        flowDelegate?.prepare(for: segue, sender: sender)
     }
 
 }

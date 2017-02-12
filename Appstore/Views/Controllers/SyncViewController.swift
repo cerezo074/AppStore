@@ -8,8 +8,11 @@
 
 import UIKit
 
-class SyncViewController: UIViewController {
+class SyncViewController: UIViewController, BaseFlow {
 
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusActivityIndicator: UIActivityIndicatorView!
+    var flowDelegate: SyncViewControllerFlowDelegate?
     var syncPresenter: SyncPresenter!
     
     override func viewDidLoad() {
@@ -23,7 +26,7 @@ class SyncViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        flowController?.prepareForSegue(segue: segue)
+        flowDelegate?.prepare(for: segue, sender: sender)
     }
 
 }
@@ -31,27 +34,29 @@ class SyncViewController: UIViewController {
 extension SyncViewController: SycnViewProtocol {
 
     func downloadingData() {
-        print("Dowloading data")
+        statusLabel.text = "Dowloading data"
+        statusActivityIndicator.startAnimating()
+        statusActivityIndicator.isHidden = false
     }
     
     func dataWasDownloaded(apps: [App]) {
-        print("Data was downloaded \(apps)")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.statusLabel.text = "Data was loaded"
+            self.statusActivityIndicator.stopAnimating()
+            self.statusActivityIndicator.isHidden = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            [weak self] in
+            guard let `self` = self else { return }
+            self.flowDelegate?.appWasSynced(on: self, apps: apps)
+        }
     }
     
     func dataNotDownloaded(errorMessage: String) {
-        print("Data can't be downloaded \(errorMessage)")
-    }
-    
-}
-
-struct fakeRepositoryServer: DiskRepositoryProtocol {
-
-    func saveApps(app: [App], completion: (DataSaveResult) -> Void) {
-        completion(.success)
-    }
-    
-    func loadApps() -> [App]? {
-        return [App.DemoApp()]
+        statusLabel.text = "Data can't be downloaded \(errorMessage)"
+        statusActivityIndicator.stopAnimating()
+        statusActivityIndicator.isHidden = true
     }
     
 }

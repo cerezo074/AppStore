@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var appFlowController: AppstoreFlowController?
+    var appsCoreDataStack: DataStack? = DataStack(dataModel: AppsManagedObjectModel.appsDataModel,
+                                                 persistenceStore: AppsPersistentStore.appsPersistenceStore)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

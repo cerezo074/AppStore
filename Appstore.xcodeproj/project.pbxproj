@@ -20,7 +20,6 @@
 		459B09D81E4F6E8100C79478 /* ListAppsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09D71E4F6E8100C79478 /* ListAppsPresenter.swift */; };
 		459B09DA1E4F6E9600C79478 /* AppDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09D91E4F6E9600C79478 /* AppDetailPresenter.swift */; };
 		459B09DC1E4F6EC700C79478 /* SyncPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09DB1E4F6EC700C79478 /* SyncPresenter.swift */; };
-		459B09DE1E4F73DC00C79478 /* UIViewController+flowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09DD1E4F73DC00C79478 /* UIViewController+flowController.swift */; };
 		459B09E21E4F7EDC00C79478 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459B09E01E4F7EDC00C79478 /* AlamofireImage.framework */; };
 		459B09E31E4F7EDC00C79478 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459B09E11E4F7EDC00C79478 /* Alamofire.framework */; };
 		459B09E51E4F7F3500C79478 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459B09E01E4F7EDC00C79478 /* AlamofireImage.framework */; };
@@ -29,6 +28,13 @@
 		459B09EC1E4F803C00C79478 /* AppsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09EB1E4F803C00C79478 /* AppsDownloader.swift */; };
 		459B09EF1E4F807F00C79478 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09EE1E4F807F00C79478 /* App.swift */; };
 		459B09F31E4FA01100C79478 /* DiskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09F21E4FA01100C79478 /* DiskRepository.swift */; };
+		459B09F61E4FEAF700C79478 /* AppsCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09F51E4FEAF700C79478 /* AppsCoreDataDAO.swift */; };
+		459B0A091E5001FE00C79478 /* AppsCoreDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B0A061E5001FE00C79478 /* AppsCoreDataConstants.swift */; };
+		459B0A0A1E5001FE00C79478 /* AppsCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 459B0A071E5001FE00C79478 /* AppsCoreDataModel.xcdatamodeld */; };
+		459B0A0C1E500A6E00C79478 /* BasicDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B0A0B1E500A6E00C79478 /* BasicDAO.swift */; };
+		459B0A101E50182E00C79478 /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B0A0E1E50182E00C79478 /* DataStack.swift */; };
+		459B0A111E50182E00C79478 /* CoreDataSourceStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B0A0F1E50182E00C79478 /* CoreDataSourceStackProtocol.swift */; };
+		459B0A141E502F5A00C79478 /* FlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B0A131E502F5A00C79478 /* FlowDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,13 +65,19 @@
 		459B09D71E4F6E8100C79478 /* ListAppsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListAppsPresenter.swift; path = Presenters/ListAppsPresenter.swift; sourceTree = "<group>"; };
 		459B09D91E4F6E9600C79478 /* AppDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDetailPresenter.swift; path = Presenters/AppDetailPresenter.swift; sourceTree = "<group>"; };
 		459B09DB1E4F6EC700C79478 /* SyncPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncPresenter.swift; path = Presenters/SyncPresenter.swift; sourceTree = "<group>"; };
-		459B09DD1E4F73DC00C79478 /* UIViewController+flowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+flowController.swift"; path = "Routers/UIViewController+flowController.swift"; sourceTree = "<group>"; };
 		459B09E01E4F7EDC00C79478 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		459B09E11E4F7EDC00C79478 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		459B09E91E4F7FF500C79478 /* ItunesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItunesService.swift; path = Services/ItunesService.swift; sourceTree = "<group>"; };
 		459B09EB1E4F803C00C79478 /* AppsDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsDownloader.swift; path = Services/Adapters/AppsDownloader.swift; sourceTree = "<group>"; };
 		459B09EE1E4F807F00C79478 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = Models/App.swift; sourceTree = "<group>"; };
 		459B09F21E4FA01100C79478 /* DiskRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskRepository.swift; path = Services/DiskRepository.swift; sourceTree = "<group>"; };
+		459B09F51E4FEAF700C79478 /* AppsCoreDataDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsCoreDataDAO.swift; path = Services/Adapters/AppsCoreDataRepository/AppsCoreDataDAO.swift; sourceTree = "<group>"; };
+		459B0A061E5001FE00C79478 /* AppsCoreDataConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsCoreDataConstants.swift; path = Services/Adapters/AppsCoreDataRepository/AppsDataModel/AppsCoreDataConstants.swift; sourceTree = "<group>"; };
+		459B0A081E5001FE00C79478 /* AppsCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppsCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		459B0A0B1E500A6E00C79478 /* BasicDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicDAO.swift; path = Services/Adapters/AppsCoreDataRepository/BasicDAO.swift; sourceTree = "<group>"; };
+		459B0A0E1E50182E00C79478 /* DataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStack.swift; path = Services/Adapters/AppsCoreDataRepository/DataStack/DataStack.swift; sourceTree = "<group>"; };
+		459B0A0F1E50182E00C79478 /* CoreDataSourceStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataSourceStackProtocol.swift; path = Services/Adapters/AppsCoreDataRepository/DataStack/CoreDataSourceStackProtocol.swift; sourceTree = "<group>"; };
+		459B0A131E502F5A00C79478 /* FlowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowDelegate.swift; path = Routers/FlowDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,9 +185,9 @@
 		459B09C61E4F689900C79478 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
+				459B0A131E502F5A00C79478 /* FlowDelegate.swift */,
 				459B09CF1E4F698300C79478 /* Segues.swift */,
 				459B09CD1E4F692800C79478 /* AppstoreFlowController.swift */,
-				459B09DD1E4F73DC00C79478 /* UIViewController+flowController.swift */,
 			);
 			name = Routers;
 			sourceTree = "<group>";
@@ -211,9 +223,39 @@
 		459B09ED1E4F804600C79478 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
+				459B09F41E4FD6BF00C79478 /* AppsCoreDaraRepository */,
 				459B09EB1E4F803C00C79478 /* AppsDownloader.swift */,
 			);
 			name = Adapters;
+			sourceTree = "<group>";
+		};
+		459B09F41E4FD6BF00C79478 /* AppsCoreDaraRepository */ = {
+			isa = PBXGroup;
+			children = (
+				459B0A0D1E5017F800C79478 /* DataStack */,
+				459B0A001E50016600C79478 /* AppsDataModel */,
+				459B09F51E4FEAF700C79478 /* AppsCoreDataDAO.swift */,
+				459B0A0B1E500A6E00C79478 /* BasicDAO.swift */,
+			);
+			name = AppsCoreDaraRepository;
+			sourceTree = "<group>";
+		};
+		459B0A001E50016600C79478 /* AppsDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				459B0A061E5001FE00C79478 /* AppsCoreDataConstants.swift */,
+				459B0A071E5001FE00C79478 /* AppsCoreDataModel.xcdatamodeld */,
+			);
+			name = AppsDataModel;
+			sourceTree = "<group>";
+		};
+		459B0A0D1E5017F800C79478 /* DataStack */ = {
+			isa = PBXGroup;
+			children = (
+				459B0A0E1E50182E00C79478 /* DataStack.swift */,
+				459B0A0F1E50182E00C79478 /* CoreDataSourceStackProtocol.swift */,
+			);
+			name = DataStack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,14 +386,20 @@
 				459B09EC1E4F803C00C79478 /* AppsDownloader.swift in Sources */,
 				459B09EA1E4F7FF500C79478 /* ItunesService.swift in Sources */,
 				459B09D81E4F6E8100C79478 /* ListAppsPresenter.swift in Sources */,
+				459B0A141E502F5A00C79478 /* FlowDelegate.swift in Sources */,
 				459B09F31E4FA01100C79478 /* DiskRepository.swift in Sources */,
+				459B0A101E50182E00C79478 /* DataStack.swift in Sources */,
 				459B09CE1E4F692800C79478 /* AppstoreFlowController.swift in Sources */,
 				459B09D61E4F6CDB00C79478 /* AppDetailViewController.swift in Sources */,
 				459B09DC1E4F6EC700C79478 /* SyncPresenter.swift in Sources */,
-				459B09DE1E4F73DC00C79478 /* UIViewController+flowController.swift in Sources */,
+				459B0A091E5001FE00C79478 /* AppsCoreDataConstants.swift in Sources */,
 				459B09D41E4F6CC800C79478 /* ListAppsViewController.swift in Sources */,
 				459B09D21E4F6CAA00C79478 /* SyncViewController.swift in Sources */,
 				459B09DA1E4F6E9600C79478 /* AppDetailPresenter.swift in Sources */,
+				459B0A111E50182E00C79478 /* CoreDataSourceStackProtocol.swift in Sources */,
+				459B09F61E4FEAF700C79478 /* AppsCoreDataDAO.swift in Sources */,
+				459B0A0A1E5001FE00C79478 /* AppsCoreDataModel.xcdatamodeld in Sources */,
+				459B0A0C1E500A6E00C79478 /* BasicDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +614,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		459B0A071E5001FE00C79478 /* AppsCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				459B0A081E5001FE00C79478 /* AppsCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 459B0A081E5001FE00C79478 /* AppsCoreDataModel.xcdatamodel */;
+			name = AppsCoreDataModel.xcdatamodeld;
+			path = Services/Adapters/AppsCoreDataRepository/AppsDataModel/AppsCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 459B09971E4F67FC00C79478 /* Project object */;
 }

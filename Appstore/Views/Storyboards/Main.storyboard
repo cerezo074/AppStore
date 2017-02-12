@@ -20,10 +20,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC4-8O-8dm">
+                                <rect key="frame" x="162.5" y="323" width="49.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7bn-95-BX8">
+                                <rect key="frame" x="169" y="352" width="37" height="37"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bC4-8O-8dm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9f8-bA-rcP"/>
+                            <constraint firstItem="7bn-95-BX8" firstAttribute="top" secondItem="bC4-8O-8dm" secondAttribute="bottom" constant="8" id="PMO-Qg-GaJ"/>
+                            <constraint firstItem="7bn-95-BX8" firstAttribute="centerX" secondItem="bC4-8O-8dm" secondAttribute="centerX" id="iMC-pE-dfY"/>
+                            <constraint firstItem="bC4-8O-8dm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jsm-4G-pSk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Em-na-t4i"/>
                     <connections>
+                        <outlet property="statusActivityIndicator" destination="7bn-95-BX8" id="cPs-Fk-PGg"/>
+                        <outlet property="statusLabel" destination="bC4-8O-8dm" id="0qK-3I-zXI"/>
                         <segue destination="0xa-fy-npS" kind="show" identifier="ListApps" id="UeH-o7-aD7"/>
                     </connections>
                 </viewController>
