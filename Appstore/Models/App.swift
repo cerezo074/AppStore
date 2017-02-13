@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct App {
     
@@ -18,7 +19,9 @@ struct App {
     var releaseDate: String = ""
     var summary: String = ""
     var rights: String = ""
+    var price: String = ""
     var iconURL: URL?
+    var image: UIImage?
     
     init() {
         
@@ -56,6 +59,11 @@ struct App {
         
         if let rights = dict.value(forKeyPath: "rights.label") as? String {
             self.rights = rights
+        }
+        
+        if let price = dict.value(forKeyPath: "im:price.attributes.amount") as? String,
+            let priceUnit = dict.value(forKeyPath: "im:price.attributes.currency") as? String {
+            self.price = price + " " + priceUnit
         }
         
         if let images = dict.value(forKeyPath: "im:image") as? [[String: Any]],

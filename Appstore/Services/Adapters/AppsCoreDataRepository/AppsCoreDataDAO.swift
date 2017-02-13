@@ -78,6 +78,7 @@ extension AppsCoreDataDAO: BasicDAO {
         newEntity.rights = app.rights
         newEntity.shortName = app.shortName
         newEntity.summary = app.summary
+        newEntity.price = app.price
         
         do {
             try newEntity.validateForInsert()
@@ -120,6 +121,10 @@ extension AppsCoreDataDAO: BasicDAO {
         
         if let rights = entity.rights {
             app.rights = rights
+        }
+        
+        if let price = entity.price {
+            app.price = price
         }
         
         if let iconURLString = entity.iconURL,

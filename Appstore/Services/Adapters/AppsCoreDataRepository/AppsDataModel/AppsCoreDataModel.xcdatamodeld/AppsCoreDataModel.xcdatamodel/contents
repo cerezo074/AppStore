@@ -6,12 +6,13 @@
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="detailName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iconURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rights" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AppEntity" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="AppEntity" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>

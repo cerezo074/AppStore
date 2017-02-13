@@ -7,11 +7,65 @@
 //
 
 import Foundation
+import UIKit
+
+protocol ListAppViewProtocol {
+    func appIconDownloaded(index: IndexPath)
+    func appIconNotDownloaded(index: IndexPath)
+}
 
 struct ListAppsPresenter {
-    var apps: [App]
     
-    init(apps: [App]) {
+    private(set) var apps: [App]
+    private let imageDownloader: ImageDownloaderProtocol
+    private let listAppView: ListAppViewProtocol
+    fileprivate let placeHolder = UIImage(named: "placeholder")
+    fileprivate let notFoundedImage =  UIImage(named: "image_not_founded")
+    
+    init(apps: [App], listAppView: ListAppViewProtocol,imageDownloader: ImageDownloaderProtocol) {
         self.apps = apps
+        self.imageDownloader = imageDownloader
+        self.listAppView = listAppView
     }
+    
+    func getImageForApp(index: IndexPath) -> UIImage? {
+        guard let iconURL = apps[index.row].iconURL else {
+            return placeHolder
+        }
+        
+        let iconUrlRequest = URLRequest(url: iconURL)
+        
+        guard let icon = imageDownloader.image(withIdentifier: iconURL.absoluteString) else {
+            imageDownloader.downloadImage(urlRequest: iconUrlRequest, completionBlock: {
+                (iconImage, error) in
+                guard let image = iconImage else {
+                    self.setImageNotFound(at: index.row)
+                    self.listAppView.appIconNotDownloaded(index: index)
+                    return
+                }
+                
+                self.setImage(on: index.row, image: image)
+                self.listAppView.appIconDownloaded(index: index)
+            })
+            
+            return placeHolder
+        }
+        
+        return icon
+    }
+    
+}
+
+private extension ListAppsPresenter {
+    
+    func setImage(on appIndex: Int, image: UIImage) {
+        var app = apps[appIndex]
+        app.image = image
+    }
+    
+    func setImageNotFound(at appIndex: Int) {
+        var app = apps[appIndex]
+        app.image = notFoundedImage
+    }
+    
 }

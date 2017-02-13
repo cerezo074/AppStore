@@ -76,7 +76,6 @@ private extension AppsDownloader {
             
             return result
         }
-        
     }
         
     static let endPoint = "https://itunes.apple.com/us/rss/topfreeapplications/"

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ListAppsViewController: UIViewController {
 
+    weak var appListView: AppListView!
     var listAppsPresenter: ListAppsPresenter!
     var flowDelegate: BaseFlow?
     
@@ -17,6 +19,7 @@ class ListAppsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUpUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,4 +32,119 @@ class ListAppsViewController: UIViewController {
         flowDelegate?.prepare(for: segue, sender: sender)
     }
 
+}
+
+private extension ListAppsViewController {
+    
+    func setUpUI() {
+        let listView = AppListView(tableDelegate: self,
+                                   collectionDelegate: self)
+        view.addSubview(listView)
+        appListView = listView
+    }
+    
+}
+
+extension ListAppsViewController: AppListTableViewProtocol {
+    
+    var tableCellNibName: String {
+        return AppTableViewCell.nibName
+    }
+    
+    var tableCellReuseIdentifier: String {
+        return AppTableViewCell.identifier
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listAppsPresenter.apps.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let app = listAppsPresenter.apps[indexPath.row]
+        let appImage = listAppsPresenter.getImageForApp(index: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: tableCellReuseIdentifier) as? AppTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        fillAppTableCell(app: app,
+                         appImage: appImage,
+                         appCell: cell)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func fillAppTableCell(app: App, appImage: UIImage?, appCell: AppTableViewCell) {
+        appCell.appTitleLabel.text = app.shortName
+        appCell.appTypeLabel.text = app.category
+        appCell.appPriceLabel.text = app.price
+        appCell.appArtistLabel.text = app.artist
+        appCell.appIconImageView.image = appImage
+    }
+    
+}
+
+extension ListAppsViewController: AppListCollectionViewProtocol {
+
+    var collectionCellNibName: String {
+        return AppCollectionViewCell.nibName
+    }
+    
+    var collectionCellReuseIdentifier: String {
+        return AppCollectionViewCell.identifier
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         return listAppsPresenter.apps.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let app = listAppsPresenter.apps[indexPath.row]
+        let appImage = listAppsPresenter.getImageForApp(index: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCollectionViewCell.identifier,
+                                                            for: indexPath) as? AppCollectionViewCell else {
+                                                                return UICollectionViewCell()
+        }
+        
+        fillAppCollectionCell(app: app,
+                              appImage: appImage,
+                              appCell: cell)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    func fillAppCollectionCell(app: App, appImage: UIImage?, appCell: AppCollectionViewCell) {
+        appCell.appTitleLabel.text = app.shortName
+        appCell.appIconImageView.image = appImage
+    }
+    
+}
+
+extension ListAppsViewController: ListAppViewProtocol {
+
+    func appIconDownloaded(index: IndexPath) {
+        appListView?.shouldReloadContent(at: index)
+    }
+    
+    func appIconNotDownloaded(index: IndexPath) {
+        appListView?.shouldReloadContent(at: index)
+    }
+    
 }

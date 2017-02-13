@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4523490B1E50B6B300149D12 /* AppListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4523490A1E50B6B300149D12 /* AppListView.swift */; };
+		4523490D1E50B6CD00149D12 /* AppListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4523490C1E50B6CD00149D12 /* AppListViewProtocol.swift */; };
+		452349101E50C17700149D12 /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4523490E1E50C17700149D12 /* AppTableViewCell.swift */; };
+		452349111E50C17700149D12 /* AppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4523490F1E50C17700149D12 /* AppTableViewCell.xib */; };
+		452349151E50C1BA00149D12 /* AppCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452349131E50C1BA00149D12 /* AppCollectionViewCell.swift */; };
+		452349161E50C1BA00149D12 /* AppCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 452349141E50C1BA00149D12 /* AppCollectionViewCell.xib */; };
+		456257E11E5141020023D35A /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456257E01E5141020023D35A /* ImageDownloader.swift */; };
+		456257E31E51421C0023D35A /* AlamofireImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456257E21E51421C0023D35A /* AlamofireImageDownloader.swift */; };
+		456257E51E518FBA0023D35A /* AppsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456257E41E518FBA0023D35A /* AppsTableView.swift */; };
+		456257E71E518FDB0023D35A /* AppsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456257E61E518FDB0023D35A /* AppsCollectionView.swift */; };
 		459B09A31E4F67FD00C79478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09A21E4F67FC00C79478 /* AppDelegate.swift */; };
 		459B09AA1E4F67FD00C79478 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 459B09A91E4F67FD00C79478 /* Assets.xcassets */; };
 		459B09B81E4F67FD00C79478 /* AppstoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09B71E4F67FD00C79478 /* AppstoreTests.swift */; };
@@ -48,6 +58,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4523490A1E50B6B300149D12 /* AppListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppListView.swift; path = Views/AppListView/AppListView.swift; sourceTree = "<group>"; };
+		4523490C1E50B6CD00149D12 /* AppListViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppListViewProtocol.swift; path = Views/AppListView/AppListViewProtocol.swift; sourceTree = "<group>"; };
+		4523490E1E50C17700149D12 /* AppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppTableViewCell.swift; path = Views/AppListView/Cells/AppTableViewCell.swift; sourceTree = "<group>"; };
+		4523490F1E50C17700149D12 /* AppTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppTableViewCell.xib; path = Views/AppListView/Cells/AppTableViewCell.xib; sourceTree = "<group>"; };
+		452349131E50C1BA00149D12 /* AppCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCollectionViewCell.swift; path = Views/AppListView/Cells/AppCollectionViewCell.swift; sourceTree = "<group>"; };
+		452349141E50C1BA00149D12 /* AppCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppCollectionViewCell.xib; path = Views/AppListView/Cells/AppCollectionViewCell.xib; sourceTree = "<group>"; };
+		456257E01E5141020023D35A /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Services/ImageDownloader.swift; sourceTree = "<group>"; };
+		456257E21E51421C0023D35A /* AlamofireImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireImageDownloader.swift; path = Services/Adapters/AlamofireImageDownloader.swift; sourceTree = "<group>"; };
+		456257E41E518FBA0023D35A /* AppsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsTableView.swift; path = Views/AppListView/AppsTableView.swift; sourceTree = "<group>"; };
+		456257E61E518FDB0023D35A /* AppsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsCollectionView.swift; path = Views/AppListView/AppsCollectionView.swift; sourceTree = "<group>"; };
 		459B099F1E4F67FC00C79478 /* Appstore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appstore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459B09A21E4F67FC00C79478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		459B09A91E4F67FD00C79478 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,6 +122,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		452349091E50B56D00149D12 /* AppListView */ = {
+			isa = PBXGroup;
+			children = (
+				452349121E50C18800149D12 /* Cells */,
+				4523490A1E50B6B300149D12 /* AppListView.swift */,
+				4523490C1E50B6CD00149D12 /* AppListViewProtocol.swift */,
+				456257E41E518FBA0023D35A /* AppsTableView.swift */,
+				456257E61E518FDB0023D35A /* AppsCollectionView.swift */,
+			);
+			name = AppListView;
+			sourceTree = "<group>";
+		};
+		452349121E50C18800149D12 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4523490E1E50C17700149D12 /* AppTableViewCell.swift */,
+				4523490F1E50C17700149D12 /* AppTableViewCell.xib */,
+				452349131E50C1BA00149D12 /* AppCollectionViewCell.swift */,
+				452349141E50C1BA00149D12 /* AppCollectionViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		459B09961E4F67FC00C79478 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +191,7 @@
 		459B09C21E4F686100C79478 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				452349091E50B56D00149D12 /* AppListView */,
 				459B09C81E4F68B200C79478 /* Controllers */,
 				459B09C71E4F68AB00C79478 /* Storyboards */,
 			);
@@ -178,6 +222,7 @@
 				459B09ED1E4F804600C79478 /* Adapters */,
 				459B09E91E4F7FF500C79478 /* ItunesService.swift */,
 				459B09F21E4FA01100C79478 /* DiskRepository.swift */,
+				456257E01E5141020023D35A /* ImageDownloader.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -225,6 +270,7 @@
 			children = (
 				459B09F41E4FD6BF00C79478 /* AppsCoreDaraRepository */,
 				459B09EB1E4F803C00C79478 /* AppsDownloader.swift */,
+				456257E21E51421C0023D35A /* AlamofireImageDownloader.swift */,
 			);
 			name = Adapters;
 			sourceTree = "<group>";
@@ -343,8 +389,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				459B09CC1E4F68C600C79478 /* Main.storyboard in Resources */,
+				452349111E50C17700149D12 /* AppTableViewCell.xib in Resources */,
 				459B09AA1E4F67FD00C79478 /* Assets.xcassets in Resources */,
 				459B09CB1E4F68C600C79478 /* LaunchScreen.storyboard in Resources */,
+				452349161E50C1BA00149D12 /* AppCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,14 +436,22 @@
 				459B09D81E4F6E8100C79478 /* ListAppsPresenter.swift in Sources */,
 				459B0A141E502F5A00C79478 /* FlowDelegate.swift in Sources */,
 				459B09F31E4FA01100C79478 /* DiskRepository.swift in Sources */,
+				4523490D1E50B6CD00149D12 /* AppListViewProtocol.swift in Sources */,
+				4523490B1E50B6B300149D12 /* AppListView.swift in Sources */,
 				459B0A101E50182E00C79478 /* DataStack.swift in Sources */,
+				456257E11E5141020023D35A /* ImageDownloader.swift in Sources */,
 				459B09CE1E4F692800C79478 /* AppstoreFlowController.swift in Sources */,
 				459B09D61E4F6CDB00C79478 /* AppDetailViewController.swift in Sources */,
 				459B09DC1E4F6EC700C79478 /* SyncPresenter.swift in Sources */,
+				456257E51E518FBA0023D35A /* AppsTableView.swift in Sources */,
+				452349151E50C1BA00149D12 /* AppCollectionViewCell.swift in Sources */,
 				459B0A091E5001FE00C79478 /* AppsCoreDataConstants.swift in Sources */,
 				459B09D41E4F6CC800C79478 /* ListAppsViewController.swift in Sources */,
 				459B09D21E4F6CAA00C79478 /* SyncViewController.swift in Sources */,
+				456257E31E51421C0023D35A /* AlamofireImageDownloader.swift in Sources */,
 				459B09DA1E4F6E9600C79478 /* AppDetailPresenter.swift in Sources */,
+				456257E71E518FDB0023D35A /* AppsCollectionView.swift in Sources */,
+				452349101E50C17700149D12 /* AppTableViewCell.swift in Sources */,
 				459B0A111E50182E00C79478 /* CoreDataSourceStackProtocol.swift in Sources */,
 				459B09F61E4FEAF700C79478 /* AppsCoreDataDAO.swift in Sources */,
 				459B0A0A1E5001FE00C79478 /* AppsCoreDataModel.xcdatamodeld in Sources */,

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AppCollectionViewCell" id="gTV-IL-0wX" customClass="AppCollectionViewCell" customModule="Appstore" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="134" height="149"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="134" height="149"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLd-xb-92i">
+                        <rect key="frame" x="8" y="100" width="118" height="41"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="41" id="eIX-F7-PyK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nib-Eb-IpP">
+                        <rect key="frame" x="23" y="8" width="88" height="88"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="BLd-xb-92i" firstAttribute="top" secondItem="Nib-Eb-IpP" secondAttribute="bottom" constant="4" id="40F-M8-8XY"/>
+                <constraint firstItem="BLd-xb-92i" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="CBC-6l-h1B"/>
+                <constraint firstAttribute="bottom" secondItem="BLd-xb-92i" secondAttribute="bottom" constant="8" id="DXa-wE-e2K"/>
+                <constraint firstItem="Nib-Eb-IpP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="23" id="MGD-FV-o1A"/>
+                <constraint firstAttribute="trailing" secondItem="BLd-xb-92i" secondAttribute="trailing" constant="8" id="Wu9-dg-2x8"/>
+                <constraint firstItem="Nib-Eb-IpP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="eJ0-oG-VrY"/>
+                <constraint firstAttribute="trailing" secondItem="Nib-Eb-IpP" secondAttribute="trailing" constant="23" id="r1k-7H-MR0"/>
+            </constraints>
+            <size key="customSize" width="131" height="149"/>
+            <connections>
+                <outlet property="appIconImageView" destination="Nib-Eb-IpP" id="7Wd-hc-Qrl"/>
+                <outlet property="appTitleLabel" destination="BLd-xb-92i" id="oPJ-3e-JPA"/>
+            </connections>
+            <point key="canvasLocation" x="-191" y="89.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

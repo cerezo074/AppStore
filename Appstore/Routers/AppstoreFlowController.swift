@@ -69,9 +69,13 @@ private extension AppstoreFlowController {
     
     func prepareForListApps(with apps: [App], destinationVC: UIViewController) {
         hideNavBar(hide: false)
+        
         guard let listAppsVC = destinationVC as? ListAppsViewController else { return }
-
-        let listAppsPresenter = ListAppsPresenter(apps: apps)
+        listAppsVC.navigationItem.hidesBackButton = true
+        let imageDownloaderServer = AlamofireImageDownloader()
+        let listAppsPresenter = ListAppsPresenter(apps: apps,
+                                                  listAppView: listAppsVC,
+                                                  imageDownloader: imageDownloaderServer)
         listAppsVC.listAppsPresenter = listAppsPresenter
     }
     
@@ -85,6 +89,7 @@ private extension AppstoreFlowController {
         guard let navVC = rootVC as? UINavigationController else {
             return
         }
+        
         navVC.isNavigationBarHidden = hide
     }
     
