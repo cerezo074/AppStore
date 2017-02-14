@@ -18,7 +18,7 @@ struct ListAppsPresenter {
     
     private(set) var apps: [App]
     private let imageDownloader: ImageDownloaderProtocol
-    private let listAppView: ListAppViewProtocol
+    fileprivate let listAppView: ListAppViewProtocol
     fileprivate let placeHolder = UIImage(named: "placeholder")
     fileprivate let notFoundedImage =  UIImage(named: "image_not_founded")
     
@@ -66,6 +66,29 @@ private extension ListAppsPresenter {
     func setImageNotFound(at appIndex: Int) {
         var app = apps[appIndex]
         app.image = notFoundedImage
+    }
+    
+}
+
+extension ListAppsPresenter: AppIconDelegate {
+    
+    func appWasUpdated(app: App) {
+        guard let index = indexForApp(appId: app.appstoreID) else {
+            return
+        }
+        
+        var appOutDated = apps[index]
+        appOutDated.image = app.image
+        
+        let indexPath = UIDevice.current.userInterfaceIdiom == .phone ?
+            IndexPath(row: index, section: 0) : IndexPath(item: index, section: 0)
+        listAppView.appIconDownloaded(index: indexPath)
+    }
+    
+    func indexForApp(appId: String) -> Int? {
+        return apps.index { (app) -> Bool in
+            return app.appstoreID == appId
+        }
     }
     
 }

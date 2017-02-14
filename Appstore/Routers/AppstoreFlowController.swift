@@ -12,6 +12,7 @@ import UIKit
 struct AppstoreFlowController {
 
     let rootVC: UIViewController
+    let imageDownloaderServer = AlamofireImageDownloader()
     
     init(rootVC: UIViewController) {
         self.rootVC = rootVC
@@ -34,7 +35,8 @@ struct AppstoreFlowController {
             prepareForListApps(with: apps, destinationVC: destination)
             break
         case Segues.appDetail:
-            prepareForDetail(sourceVC: source, destinationVC: destination)
+            guard let app = sender as? App else { break }
+            prepareForDetail(with: app,sourceVC: source, destinationVC: destination)
         default:
             return
         }
@@ -72,16 +74,19 @@ private extension AppstoreFlowController {
         
         guard let listAppsVC = destinationVC as? ListAppsViewController else { return }
         listAppsVC.navigationItem.hidesBackButton = true
-        let imageDownloaderServer = AlamofireImageDownloader()
+        listAppsVC.flowDelegate = self
         let listAppsPresenter = ListAppsPresenter(apps: apps,
                                                   listAppView: listAppsVC,
                                                   imageDownloader: imageDownloaderServer)
         listAppsVC.listAppsPresenter = listAppsPresenter
     }
     
-    func prepareForDetail(sourceVC: UIViewController, destinationVC: UIViewController) {
+    func prepareForDetail(with app: App, sourceVC: UIViewController, destinationVC: UIViewController) {
         guard let appDetailVC = destinationVC as? AppDetailViewController else { return }
-        let appDetailPresenter = AppDetailPresenter()
+        guard let listAppsVC = sourceVC as? ListAppsViewController else { return }
+        
+        var appDetailPresenter = AppDetailPresenter(app: app, imageDownloader: imageDownloaderServer, appDetailView: appDetailVC)
+        appDetailPresenter.iconDelegate = listAppsVC.listAppsPresenter
         appDetailVC.appDetailPresenter = appDetailPresenter
     }
     
@@ -98,5 +103,11 @@ private extension AppstoreFlowController {
 extension AppstoreFlowController: SyncViewControllerFlowDelegate {
     func appWasSynced(on syncVC: SyncViewController, apps: [App]) {
         syncVC.performSegue(withIdentifier: Segues.listApps, sender: apps)
+    }
+}
+
+extension AppstoreFlowController: ListViewControllerFlowDelegate {
+    func detailWasTouched(on listVC: ListAppsViewController, app: App) {
+        listVC.performSegue(withIdentifier: Segues.appDetail, sender: app)
     }
 }

@@ -20,3 +20,7 @@ protocol BaseFlowViewController {
 protocol SyncViewControllerFlowDelegate: BaseFlow {
     func appWasSynced(on syncVC: SyncViewController, apps: [App])
 }
+
+protocol ListViewControllerFlowDelegate: BaseFlow {
+    func detailWasTouched(on listVC: ListAppsViewController, app: App)
+}

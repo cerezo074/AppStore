@@ -9,11 +9,11 @@
 import UIKit
 import AlamofireImage
 
-class ListAppsViewController: UIViewController {
+class ListAppsViewController: UIViewController, BaseFlow {
 
     weak var appListView: AppListView!
     var listAppsPresenter: ListAppsPresenter!
-    var flowDelegate: BaseFlow?
+    var flowDelegate: ListViewControllerFlowDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +80,8 @@ extension ListAppsViewController: AppListTableViewProtocol {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let app = listAppsPresenter.apps[indexPath.row]
+        flowDelegate?.detailWasTouched(on: self, app: app)
     }
     
     func fillAppTableCell(app: App, appImage: UIImage?, appCell: AppTableViewCell) {
@@ -128,6 +130,8 @@ extension ListAppsViewController: AppListCollectionViewProtocol {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        let app = listAppsPresenter.apps[indexPath.item]
+        flowDelegate?.detailWasTouched(on: self, app: app)
     }
     
     func fillAppCollectionCell(app: App, appImage: UIImage?, appCell: AppCollectionViewCell) {
