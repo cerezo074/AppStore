@@ -82,10 +82,12 @@ private extension AppstoreFlowController {
     }
     
     func prepareForDetail(with app: App, sourceVC: UIViewController, destinationVC: UIViewController) {
+        hideNavBar(hide: true)
         guard let appDetailVC = destinationVC as? AppDetailViewController else { return }
         guard let listAppsVC = sourceVC as? ListAppsViewController else { return }
         
         var appDetailPresenter = AppDetailPresenter(app: app, imageDownloader: imageDownloaderServer, appDetailView: appDetailVC)
+        appDetailVC.flowDelegate = self
         appDetailPresenter.iconDelegate = listAppsVC.listAppsPresenter
         appDetailVC.appDetailPresenter = appDetailPresenter
     }
@@ -109,5 +111,13 @@ extension AppstoreFlowController: SyncViewControllerFlowDelegate {
 extension AppstoreFlowController: ListViewControllerFlowDelegate {
     func detailWasTouched(on listVC: ListAppsViewController, app: App) {
         listVC.performSegue(withIdentifier: Segues.appDetail, sender: app)
+    }
+}
+
+extension AppstoreFlowController: AppDetailViewControllerFlowDelegate {
+    func userPressBackButton(on appDetail: AppDetailViewController) {
+        guard let navVC = appDetail.navigationController else { return }
+        navVC.popViewController(animated: true)
+        hideNavBar(hide: false)
     }
 }

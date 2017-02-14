@@ -17,6 +17,7 @@
 		456257E31E51421C0023D35A /* AlamofireImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456257E21E51421C0023D35A /* AlamofireImageDownloader.swift */; };
 		456257E51E518FBA0023D35A /* AppsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456257E41E518FBA0023D35A /* AppsTableView.swift */; };
 		456257E71E518FDB0023D35A /* AppsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456257E61E518FDB0023D35A /* AppsCollectionView.swift */; };
+		459305931E52C21B00B642A9 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459305921E52C21B00B642A9 /* Animator.swift */; };
 		459B09A31E4F67FD00C79478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09A21E4F67FC00C79478 /* AppDelegate.swift */; };
 		459B09AA1E4F67FD00C79478 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 459B09A91E4F67FD00C79478 /* Assets.xcassets */; };
 		459B09B81E4F67FD00C79478 /* AppstoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B09B71E4F67FD00C79478 /* AppstoreTests.swift */; };
@@ -68,6 +69,7 @@
 		456257E21E51421C0023D35A /* AlamofireImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireImageDownloader.swift; path = Services/Adapters/AlamofireImageDownloader.swift; sourceTree = "<group>"; };
 		456257E41E518FBA0023D35A /* AppsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsTableView.swift; path = Views/AppListView/AppsTableView.swift; sourceTree = "<group>"; };
 		456257E61E518FDB0023D35A /* AppsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsCollectionView.swift; path = Views/AppListView/AppsCollectionView.swift; sourceTree = "<group>"; };
+		459305921E52C21B00B642A9 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = Views/Animator.swift; sourceTree = "<group>"; };
 		459B099F1E4F67FC00C79478 /* Appstore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appstore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459B09A21E4F67FC00C79478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		459B09A91E4F67FD00C79478 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		459B09C21E4F686100C79478 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				459305921E52C21B00B642A9 /* Animator.swift */,
 				452349091E50B56D00149D12 /* AppListView */,
 				459B09C81E4F68B200C79478 /* Controllers */,
 				459B09C71E4F68AB00C79478 /* Storyboards */,
@@ -434,6 +437,7 @@
 				459B09EC1E4F803C00C79478 /* AppsDownloader.swift in Sources */,
 				459B09EA1E4F7FF500C79478 /* ItunesService.swift in Sources */,
 				459B09D81E4F6E8100C79478 /* ListAppsPresenter.swift in Sources */,
+				459305931E52C21B00B642A9 /* Animator.swift in Sources */,
 				459B0A141E502F5A00C79478 /* FlowDelegate.swift in Sources */,
 				459B09F31E4FA01100C79478 /* DiskRepository.swift in Sources */,
 				4523490D1E50B6CD00149D12 /* AppListViewProtocol.swift in Sources */,
@@ -584,6 +588,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = example.Appstore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -600,6 +605,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = example.Appstore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

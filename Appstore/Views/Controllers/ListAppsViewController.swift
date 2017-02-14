@@ -20,6 +20,7 @@ class ListAppsViewController: UIViewController, BaseFlow {
 
         // Do any additional setup after loading the view.
         setUpUI()
+        self.navigationController?.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,6 +150,19 @@ extension ListAppsViewController: ListAppViewProtocol {
     
     func appIconNotDownloaded(index: IndexPath) {
         appListView?.shouldReloadContent(at: index)
+    }
+    
+}
+
+//MARK: UINavigationController Delegate Methods
+
+extension ListAppsViewController : UINavigationControllerDelegate{
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationControllerOperation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return Animator(timeForTransition: 0.35, type: .fade)
     }
     
 }

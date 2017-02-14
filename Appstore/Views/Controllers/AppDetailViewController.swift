@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppDetailViewController: UIViewController {
+class AppDetailViewController: UIViewController, BaseFlow {
 
     @IBOutlet weak var appImageView: UIImageView!
     @IBOutlet weak var appTitleLabel: UILabel!
@@ -19,6 +19,7 @@ class AppDetailViewController: UIViewController {
     @IBOutlet weak var appRightsLabel: UILabel!
     
     var appDetailPresenter: AppDetailPresenter!
+    var flowDelegate: AppDetailViewControllerFlowDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +44,7 @@ class AppDetailViewController: UIViewController {
     //MARK: IBAction Methods
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        guard let navVC = navigationController else { return }
-        navVC.popViewController(animated: true)
+        flowDelegate?.userPressBackButton(on: self)
     }
 
 }
