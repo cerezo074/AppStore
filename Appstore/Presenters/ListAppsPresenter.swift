@@ -9,20 +9,18 @@
 import Foundation
 import UIKit
 
-protocol ListAppViewProtocol {
+protocol ListAppViewProtocol: class {
     func appIconDownloaded(index: IndexPath)
     func appIconNotDownloaded(index: IndexPath)
 }
 
 struct ListAppsPresenter {
     
+    fileprivate unowned let listAppView: ListAppViewProtocol
     private(set) var apps: [App]
     private let imageDownloader: ImageDownloaderProtocol
-    fileprivate let listAppView: ListAppViewProtocol
-    fileprivate let placeHolder = UIImage(named: "placeholder")
-    fileprivate let notFoundedImage =  UIImage(named: "image_not_founded")
-    
-    
+    private let placeHolder = UIImage(named: "placeholder")
+    private let notFoundedImage =  UIImage(named: "image_not_founded")
     
     init(apps: [App], listAppView: ListAppViewProtocol,imageDownloader: ImageDownloaderProtocol) {
         self.apps = apps
@@ -66,9 +64,6 @@ extension ListAppsPresenter: AppIconDelegate {
         guard let index = indexForApp(appId: app.appstoreID) else {
             return
         }
-        
-        let appOutDated = apps[index]
-        appOutDated.image = app.image
         
         let indexPath = UIDevice.current.userInterfaceIdiom == .phone ?
             IndexPath(row: index, section: 0) : IndexPath(item: index, section: 0)

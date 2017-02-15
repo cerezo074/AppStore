@@ -145,7 +145,6 @@ extension DataStack: ContextHasChangedProtocol {
     }
     
     func saveChangesOnMainMOC() {
-        
         if !mainContext.hasChanges {
             print("You doesn't have changes on main context!")
             return
@@ -163,7 +162,6 @@ extension DataStack: ContextHasChangedProtocol {
     }
     
     func saveChangesOnPersistentMOC() {
-        
         if !persistenceContext.hasChanges {
             print("You doesn't have changes on persistent context!")
             return

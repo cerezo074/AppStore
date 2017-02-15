@@ -13,6 +13,6 @@ protocol CoreDataSourceStackProtocol {
     func readContext() -> NSManagedObjectContext
     func saveContext() -> NSManagedObjectContext
     
-    //This context is attach with the Persistence Store directly
+    //This context is attached with the Persistence Store directly
     func fastSaveContext() -> NSManagedObjectContext
 }

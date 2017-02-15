@@ -42,7 +42,7 @@ struct AppsDownloader: ItunesServiceProtocol {
 }
 
 private extension AppsDownloader {
-
+    
     enum Apps: URLRequestConvertible {
         
         case get(amount: Int)
@@ -53,14 +53,11 @@ private extension AppsDownloader {
         }
         
         fileprivate func asURLRequest() throws -> URLRequest {
-            
             let values: (path: String, method: Alamofire.HTTPMethod, parameters: [String : Any]?) = {
-                
                 switch self {
                 case .get(let amount):
                     return (endPoint + "limit=\(amount)/json", .get, nil)
                 }
-                
             }()
             
             guard let url = URL(string: values.path) else {
@@ -77,11 +74,10 @@ private extension AppsDownloader {
             return result
         }
     }
-        
+    
     static let endPoint = "https://itunes.apple.com/us/rss/topfreeapplications/"
     
     func responseParse(dict: [String : Any]) -> [App]? {
-       
         guard let feed = dict["feed"] as? [String : Any],
             let entry = feed["entry"] as? [NSDictionary]
             else {

@@ -43,17 +43,17 @@ struct AppsCoreDataDAO: DiskRepositoryProtocol {
                 do {
                     try saveContext.save()
                     self.callOnMainThreadSimpleBlock(completionBlock: completion,
-                                                result: true,
-                                                error: error)
+                                                     result: true,
+                                                     error: error)
                 } catch {
                     self.callOnMainThreadSimpleBlock(completionBlock: completion,
-                                                result: true,
-                                                error: error)
+                                                     result: true,
+                                                     error: error)
                 }
             } else {
                 self.callOnMainThreadSimpleBlock(completionBlock: completion,
-                                        result: true,
-                                        error: error)
+                                                 result: true,
+                                                 error: error)
             }
         }
     }
@@ -62,8 +62,7 @@ struct AppsCoreDataDAO: DiskRepositoryProtocol {
 
 extension AppsCoreDataDAO: BasicDAO {
     
-    fileprivate func createAppEntity(app: App,
-                                     context: NSManagedObjectContext) {
+    fileprivate func createAppEntity(app: App, context: NSManagedObjectContext) {
         guard let newEntity = NSEntityDescription.insertNewObject(forEntityName: appEntityName, into: context) as? AppEntity else {
             print("App \(app.appstoreID) couldn't be insert in context")
             return
@@ -88,7 +87,6 @@ extension AppsCoreDataDAO: BasicDAO {
     }
     
     fileprivate func createApp(from entity: AppEntity) -> App {
-        
         let app = App()
         
         if let appstoreID = entity.appstoreID {
@@ -142,15 +140,14 @@ extension AppsCoreDataDAO: BasicDAO {
     }
     
     fileprivate func readSync(context: NSManagedObjectContext,
-                  fetchRequest: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]? {
+                              fetchRequest: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]? {
         let contactsFetched = try? context.fetch(fetchRequest)
         return contactsFetched as? [NSManagedObject]
     }
     
     fileprivate func delete(context: NSManagedObjectContext,
-                validationRequest: NSFetchRequest<NSFetchRequestResult>,
-                completionBlock: @escaping DiskRepositoryProtocol.PerformTaskBlock) {
-        
+                            validationRequest: NSFetchRequest<NSFetchRequestResult>,
+                            completionBlock: @escaping DiskRepositoryProtocol.PerformTaskBlock) {
         unowned let unownedContext = context
         context.performAndWait {
             do {
@@ -166,7 +163,6 @@ extension AppsCoreDataDAO: BasicDAO {
                 completionBlock(false, error)
             }
         }
-        
     }
     
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SycnViewProtocol {
+protocol SycnViewProtocol: class {
     func downloadingData()
     func dataWasDownloaded(apps: [App])
     func dataNotDownloaded(errorMessage: String)
@@ -16,38 +16,40 @@ protocol SycnViewProtocol {
 
 struct SyncPresenter {
     
-    let view: SycnViewProtocol
+    unowned let syncView: SycnViewProtocol
     let itunesService: ItunesServiceProtocol
     let repositoryService: DiskRepositoryProtocol
     
-    init(view: SycnViewProtocol, itunesService: ItunesServiceProtocol, repositoryService: DiskRepositoryProtocol) {
-        self.view = view
+    init(syncView: SycnViewProtocol, itunesService: ItunesServiceProtocol, repositoryService: DiskRepositoryProtocol) {
+        self.syncView = syncView
         self.itunesService = itunesService
         self.repositoryService = repositoryService
     }
     
     func downloadData() {
-        view.downloadingData()
-        itunesService.downloadApps(amount: 50) { response in
+        syncView.downloadingData()
+        itunesService.downloadApps(amount: 50) {
+            response in
             switch response {
             case .success(apps: let apps):
-                self.repositoryService.saveApps(apps: apps, completion: { (result, errorDetail) in
+                self.repositoryService.saveApps(apps: apps, completion: {
+                    (result, errorDetail) in
                     guard let error = errorDetail else {
                         print("Data was saved!")
                         return
                     }
                     print("Error saving data: " + error.localizedDescription)
                 })
-                self.view.dataWasDownloaded(apps: apps)
+                self.syncView.dataWasDownloaded(apps: apps)
                 break
             case .notConnectedToInternet, .failure:
                 guard let dataFromDisk = self.repositoryService.loadApps() else {
                     let messageToShow = response == .failure ? "There is an error please try later."
                         : "Sorry, you need an internet connection"
-                    self.view.dataNotDownloaded(errorMessage: messageToShow)
+                    self.syncView.dataNotDownloaded(errorMessage: messageToShow)
                     return
                 }
-                self.view.dataWasDownloaded(apps: dataFromDisk)
+                self.syncView.dataWasDownloaded(apps: dataFromDisk)
             }
         }
     }
