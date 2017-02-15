@@ -19,11 +19,12 @@ class ListAppsPresenter {
     
     fileprivate unowned let listAppView: ListAppViewProtocol
     fileprivate let apps: [App]
+    fileprivate(set) var selectedCategory: String?
+    fileprivate(set) var selectAppsFromCategegory = false
     private let imageDownloader: ImageDownloaderProtocol
     private let placeHolder = UIImage(named: "placeholder")
     private let notFoundedImage =  UIImage(named: "image_not_founded")
-    fileprivate(set) var selectedCategory: String?
-    fileprivate(set) var selectAppsFromCategegory = false
+
     var appsWithCategorySelected: [App] {
         guard let categoryToFilter = selectedCategory else {
             return []

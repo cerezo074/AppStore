@@ -10,6 +10,8 @@ import UIKit
 
 class SyncViewController: UIViewController, BaseFlow {
 
+    @IBOutlet weak var retryButton: UIButton!
+    
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusActivityIndicator: UIActivityIndicatorView!
     var flowDelegate: SyncViewControllerFlowDelegate?
@@ -29,6 +31,10 @@ class SyncViewController: UIViewController, BaseFlow {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         flowDelegate?.prepare(for: segue, sender: sender)
     }
+    
+    @IBAction func retryButtonPressed(_ sender: Any) {
+        syncPresenter.downloadData()
+    }
 
 }
 
@@ -38,6 +44,7 @@ extension SyncViewController: SycnViewProtocol {
         statusLabel.text = "Dowloading data"
         statusActivityIndicator.startAnimating()
         statusActivityIndicator.isHidden = false
+        retryButton.isHidden = true
     }
     
     func dataWasDownloaded(apps: [App]) {
@@ -58,6 +65,7 @@ extension SyncViewController: SycnViewProtocol {
         statusLabel.text = "Data can't be downloaded \(errorMessage)"
         statusActivityIndicator.stopAnimating()
         statusActivityIndicator.isHidden = true
+        retryButton.isHidden = false
     }
     
 }

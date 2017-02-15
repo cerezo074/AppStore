@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC4-8O-8dm">
-                                <rect key="frame" x="135.5" y="241.5" width="49.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC4-8O-8dm">
+                                <rect key="frame" x="36" y="241.5" width="248" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,17 +32,37 @@
                                 <rect key="frame" x="142" y="270.5" width="37" height="37"/>
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MmD-4F-EJS">
+                                <rect key="frame" x="120" y="306" width="80" height="39"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="HDc-Jc-IIm"/>
+                                    <constraint firstAttribute="width" constant="80" id="pGM-gr-tTb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Retry">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="retryButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Noo-9B-EbE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="MmD-4F-EJS" firstAttribute="centerX" secondItem="bC4-8O-8dm" secondAttribute="centerX" id="2I7-DC-Ces"/>
                             <constraint firstItem="bC4-8O-8dm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9f8-bA-rcP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bC4-8O-8dm" secondAttribute="trailing" constant="20" id="MMo-ZS-J1K"/>
                             <constraint firstItem="7bn-95-BX8" firstAttribute="top" secondItem="bC4-8O-8dm" secondAttribute="bottom" constant="8" id="PMO-Qg-GaJ"/>
                             <constraint firstItem="7bn-95-BX8" firstAttribute="centerX" secondItem="bC4-8O-8dm" secondAttribute="centerX" id="iMC-pE-dfY"/>
                             <constraint firstItem="bC4-8O-8dm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jsm-4G-pSk"/>
+                            <constraint firstItem="MmD-4F-EJS" firstAttribute="top" secondItem="bC4-8O-8dm" secondAttribute="bottom" constant="43.5" id="r3h-KP-uii"/>
+                            <constraint firstItem="bC4-8O-8dm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="vNj-cJ-x98"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Em-na-t4i"/>
                     <connections>
+                        <outlet property="retryButton" destination="MmD-4F-EJS" id="sld-4e-ROT"/>
                         <outlet property="statusActivityIndicator" destination="7bn-95-BX8" id="cPs-Fk-PGg"/>
                         <outlet property="statusLabel" destination="bC4-8O-8dm" id="0qK-3I-zXI"/>
                         <segue destination="0xa-fy-npS" kind="show" identifier="ListApps" id="UeH-o7-aD7"/>
@@ -50,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="876" y="-561"/>
+            <point key="canvasLocation" x="875.625" y="-561.97183098591552"/>
         </scene>
         <!--Apps-->
         <scene sceneID="AJO-84-lG3">

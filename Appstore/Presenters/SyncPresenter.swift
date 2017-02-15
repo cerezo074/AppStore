@@ -45,7 +45,8 @@ struct SyncPresenter {
                 self.syncView.dataWasDownloaded(apps: apps)
                 break
             case .notConnectedToInternet, .failure:
-                guard let dataFromDisk = self.repositoryService.loadApps() else {
+                guard let dataFromDisk = self.repositoryService.loadApps(),
+                dataFromDisk.count > 0 else {
                     let messageToShow = response == .failure ? "There is an error please try later."
                         : "Sorry, you need an internet connection"
                     self.syncView.dataNotDownloaded(errorMessage: messageToShow)
