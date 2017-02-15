@@ -233,8 +233,8 @@
 		459B09C61E4F689900C79478 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				459B0A131E502F5A00C79478 /* FlowDelegate.swift */,
 				459B09CF1E4F698300C79478 /* Segues.swift */,
+				459B0A131E502F5A00C79478 /* FlowDelegate.swift */,
 				459B09CD1E4F692800C79478 /* AppstoreFlowController.swift */,
 			);
 			name = Routers;

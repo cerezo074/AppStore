@@ -89,7 +89,7 @@ extension AppsCoreDataDAO: BasicDAO {
     
     fileprivate func createApp(from entity: AppEntity) -> App {
         
-        var app = App()
+        let app = App()
         
         if let appstoreID = entity.appstoreID {
             app.appstoreID = appstoreID

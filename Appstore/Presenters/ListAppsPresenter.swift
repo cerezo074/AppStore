@@ -22,6 +22,8 @@ struct ListAppsPresenter {
     fileprivate let placeHolder = UIImage(named: "placeholder")
     fileprivate let notFoundedImage =  UIImage(named: "image_not_founded")
     
+    
+    
     init(apps: [App], listAppView: ListAppViewProtocol,imageDownloader: ImageDownloaderProtocol) {
         self.apps = apps
         self.imageDownloader = imageDownloader
@@ -29,6 +31,8 @@ struct ListAppsPresenter {
     }
     
     func getImageForApp(index: IndexPath) -> UIImage? {
+        let app = apps[index.row]
+
         guard let iconURL = apps[index.row].iconURL else {
             return placeHolder
         }
@@ -37,14 +41,13 @@ struct ListAppsPresenter {
         
         guard let icon = imageDownloader.image(withIdentifier: iconURL.absoluteString) else {
             imageDownloader.downloadImage(urlRequest: iconUrlRequest, completionBlock: {
-                (iconImage, error) in
+                [weak app, weak notFoundedImage] (iconImage, error) in
                 guard let image = iconImage else {
-                    self.setImageNotFound(at: index.row)
+                    app?.image = notFoundedImage
                     self.listAppView.appIconNotDownloaded(index: index)
                     return
                 }
-                
-                self.setImage(on: index.row, image: image)
+                app?.image = image
                 self.listAppView.appIconDownloaded(index: index)
             })
             
@@ -56,19 +59,6 @@ struct ListAppsPresenter {
     
 }
 
-private extension ListAppsPresenter {
-    
-    func setImage(on appIndex: Int, image: UIImage) {
-        var app = apps[appIndex]
-        app.image = image
-    }
-    
-    func setImageNotFound(at appIndex: Int) {
-        var app = apps[appIndex]
-        app.image = notFoundedImage
-    }
-    
-}
 
 extension ListAppsPresenter: AppIconDelegate {
     
@@ -77,7 +67,7 @@ extension ListAppsPresenter: AppIconDelegate {
             return
         }
         
-        var appOutDated = apps[index]
+        let appOutDated = apps[index]
         appOutDated.image = app.image
         
         let indexPath = UIDevice.current.userInterfaceIdiom == .phone ?

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct App {
+class App {
     
     var appstoreID: String = ""
     var shortName: String = ""

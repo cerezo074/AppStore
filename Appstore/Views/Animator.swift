@@ -34,12 +34,12 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
         let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
         let containerView = transitionContext.containerView
-        
-        containerView.addSubview(toViewController.view)
         containerView.sendSubview(toBack: toViewController.view)
-        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
+        containerView.addSubview(toViewController.view)
         
         if type == .fade {
+            
+            toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
             
             toViewController.view.alpha = 0.0
             UIView.animate(withDuration: timeForTransition, animations: {
@@ -54,6 +54,12 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         
         if type == .bounce {
             
+            toViewController.view.frame = CGRect(x: toViewController.view.frame.origin.x,
+                                                 y: toViewController.view.frame.origin.y,
+                                                 width: fromViewController.view.frame.width,
+                                                 height:fromViewController.view.frame.height)
+            
+            containerView.addSubview(toViewController.view)
             UIView.animate(withDuration: timeForTransition, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 5.0, options: .curveLinear, animations: {
                 toViewController.view.frame = fromViewController.view.frame
             }, completion: { (finished) in

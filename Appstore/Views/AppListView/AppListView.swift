@@ -12,6 +12,7 @@ class AppListView: UIView {
     
     private weak var appsTableView: AppsTableView?
     private weak var appsCollectionView: AppsCollectionView?
+    private var pendingReload = false
     
     init(tableDelegate: AppListTableViewProtocol,
          collectionDelegate: AppListCollectionViewProtocol) {
@@ -36,14 +37,26 @@ class AppListView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    func shouldReload() {
+        if pendingReload {
+            if shouldUseTable() {
+                appsTableView?.reloadData()
+            } else {
+                appsCollectionView?.reloadData()
+            }
+            pendingReload = false
+        }
+    }
 
     func shouldReloadContent(at index: IndexPath) {
         
         if shouldUseTable() {
             guard let tableView = appsTableView,
                 let visibleIndexes = tableView.indexPathsForVisibleRows,
-                (!tableView.isDragging && !tableView.isDecelerating) || tableView.isTracking else {
-                        return
+                (!tableView.isDragging && !tableView.isDecelerating) else {
+                    pendingReload = true
+                    return
             }
             
             let containIndexBlockOperation = { (indexToCompare: IndexPath) -> Bool in
@@ -55,7 +68,9 @@ class AppListView: UIView {
                 tableView.reloadRows(at: [index], with: .automatic)
             }
         } else {
-            guard let collectionView = appsCollectionView else {
+            guard let collectionView = appsCollectionView,
+            (!collectionView.isDragging && !collectionView.isDecelerating)else {
+                pendingReload = true
                 return
             }
             

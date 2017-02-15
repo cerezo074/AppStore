@@ -46,7 +46,7 @@ private extension ListAppsViewController {
     
 }
 
-extension ListAppsViewController: AppListTableViewProtocol {
+extension ListAppsViewController: AppListCollectionViewProtocol, AppListTableViewProtocol {
     
     var tableCellNibName: String {
         return AppTableViewCell.nibName
@@ -95,7 +95,7 @@ extension ListAppsViewController: AppListTableViewProtocol {
     
 }
 
-extension ListAppsViewController: AppListCollectionViewProtocol {
+extension ListAppsViewController {
 
     var collectionCellNibName: String {
         return AppCollectionViewCell.nibName
@@ -138,6 +138,16 @@ extension ListAppsViewController: AppListCollectionViewProtocol {
     func fillAppCollectionCell(app: App, appImage: UIImage?, appCell: AppCollectionViewCell) {
         appCell.appTitleLabel.text = app.shortName
         appCell.appIconImageView.image = appImage
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            appListView.shouldReload()
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        appListView.shouldReload()
     }
     
 }
