@@ -28,7 +28,7 @@ struct SyncPresenter {
     
     func downloadData() {
         view.downloadingData()
-        itunesService.downloadApps(amount: 150) { response in
+        itunesService.downloadApps(amount: 10) { response in
             switch response {
             case .success(apps: let apps):
                 self.repositoryService.saveApps(apps: apps, completion: { (result, errorDetail) in

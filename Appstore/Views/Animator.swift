@@ -33,20 +33,17 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
         let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
+        let containerView = transitionContext.containerView
         
-
+        containerView.addSubview(toViewController.view)
+        containerView.sendSubview(toBack: toViewController.view)
+        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
         
         if type == .fade {
             
-            toViewController.view.frame = CGRect(x: toViewController.view.frame.origin.x,
-                                                 y: toViewController.view.frame.origin.y,
-                                                 width: fromViewController.view.frame.width,
-                                                 height:fromViewController.view.frame.height)
             toViewController.view.alpha = 0.0
-            
-            transitionContext.containerView.addSubview(toViewController.view)
             UIView.animate(withDuration: timeForTransition, animations: {
-                fromViewController.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                fromViewController.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
                 toViewController.view.alpha = 1.0
             }, completion: { (finished) in
                 fromViewController.view.transform = CGAffineTransform.identity
@@ -57,7 +54,6 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         
         if type == .bounce {
             
-            transitionContext.containerView.addSubview(toViewController.view)
             UIView.animate(withDuration: timeForTransition, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 5.0, options: .curveLinear, animations: {
                 toViewController.view.frame = fromViewController.view.frame
             }, completion: { (finished) in
