@@ -32,6 +32,10 @@ class ListAppsViewController: UIViewController, BaseFlow {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         flowDelegate?.prepare(for: segue, sender: sender)
     }
+    
+    @IBAction func categoryButtonPressed(_ sender: Any) {
+        flowDelegate?.categoryWasTouched(on: self)
+    }
 
 }
 
@@ -57,7 +61,7 @@ extension ListAppsViewController: AppListCollectionViewProtocol, AppListTableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listAppsPresenter.apps.count
+        return listAppsPresenter.appsForConsume.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,7 +70,7 @@ extension ListAppsViewController: AppListCollectionViewProtocol, AppListTableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let app = listAppsPresenter.apps[indexPath.row]
+        let app = listAppsPresenter.appsForConsume[indexPath.row]
         let appImage = listAppsPresenter.getImageForApp(index: indexPath)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: tableCellReuseIdentifier) as? AppTableViewCell else {
             return UITableViewCell()
@@ -81,7 +85,7 @@ extension ListAppsViewController: AppListCollectionViewProtocol, AppListTableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let app = listAppsPresenter.apps[indexPath.row]
+        let app = listAppsPresenter.appsForConsume[indexPath.row]
         flowDelegate?.detailWasTouched(on: self, app: app)
     }
     
@@ -110,12 +114,12 @@ extension ListAppsViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return listAppsPresenter.apps.count
+         return listAppsPresenter.appsForConsume.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let app = listAppsPresenter.apps[indexPath.row]
+        let app = listAppsPresenter.appsForConsume[indexPath.row]
         let appImage = listAppsPresenter.getImageForApp(index: indexPath)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCollectionViewCell.identifier,
                                                             for: indexPath) as? AppCollectionViewCell else {
@@ -131,7 +135,7 @@ extension ListAppsViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let app = listAppsPresenter.apps[indexPath.item]
+        let app = listAppsPresenter.appsForConsume[indexPath.item]
         flowDelegate?.detailWasTouched(on: self, app: app)
     }
     
@@ -160,6 +164,10 @@ extension ListAppsViewController: ListAppViewProtocol {
     
     func appIconNotDownloaded(index: IndexPath) {
         appListView?.shouldReloadContent(at: index)
+    }
+    
+    func categoyWasSelected() {
+        appListView.reload()
     }
     
 }

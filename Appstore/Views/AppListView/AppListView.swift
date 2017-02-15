@@ -48,6 +48,14 @@ class AppListView: UIView {
             pendingReload = false
         }
     }
+    
+    func reload() {
+        if shouldUseTable() {
+            appsTableView?.reloadData()
+        } else {
+            appsCollectionView?.reloadData()
+        }
+    }
 
     func shouldReloadContent(at index: IndexPath) {
         

@@ -65,14 +65,64 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Apps" id="LBS-Nz-zIV"/>
+                    <navigationItem key="navigationItem" title="Apps" id="LBS-Nz-zIV">
+                        <barButtonItem key="rightBarButtonItem" title="Categories" id="pml-9x-fgJ">
+                            <connections>
+                                <action selector="categoryButtonPressed:" destination="0xa-fy-npS" id="D3f-Lw-sSl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="aop-9G-qFj" kind="show" identifier="AppDetail" id="oSc-Xx-WAd"/>
+                        <segue destination="8eG-he-jI1" kind="popoverPresentation" identifier="Categories" popoverAnchorBarButtonItem="pml-9x-fgJ" id="FpU-sz-336">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LMb-ye-rX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1740" y="-562"/>
+        </scene>
+        <!--Categories-->
+        <scene sceneID="vpd-3u-TiT">
+            <objects>
+                <viewController id="vpi-ga-7Ds" customClass="CategoriesViewController" customModule="Appstore" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qgZ-am-yT1"/>
+                        <viewControllerLayoutGuide type="bottom" id="97H-eo-h9r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LPg-RV-AFr">
+                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iz8-RB-6lJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vpi-ga-7Ds" id="phY-hm-N9p"/>
+                                    <outlet property="delegate" destination="vpi-ga-7Ds" id="EDT-Ft-bIQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="97H-eo-h9r" firstAttribute="top" secondItem="Iz8-RB-6lJ" secondAttribute="bottom" id="IbQ-T0-CIc"/>
+                            <constraint firstItem="Iz8-RB-6lJ" firstAttribute="top" secondItem="qgZ-am-yT1" secondAttribute="bottom" id="c6V-wt-6qc"/>
+                            <constraint firstItem="Iz8-RB-6lJ" firstAttribute="leading" secondItem="LPg-RV-AFr" secondAttribute="leading" id="ngs-qA-coN"/>
+                            <constraint firstAttribute="trailing" secondItem="Iz8-RB-6lJ" secondAttribute="trailing" id="zf5-vC-Zd7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Categories" id="H0U-RU-qBZ"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="300"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="categoriesTableView" destination="Iz8-RB-6lJ" id="jxW-2Z-LYU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfU-Jo-Js7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2593" y="173"/>
         </scene>
         <!--App Detail View Controller-->
         <scene sceneID="JQF-nb-BW4">
@@ -303,6 +353,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oqj-5H-xNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.600000000000001" y="-560.86956521739137"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JFX-2X-UoE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8eG-he-jI1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="yI9-X9-P8a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vpi-ga-7Ds" kind="relationship" relationship="rootViewController" id="Y3t-hK-BFa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iat-dE-ivC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="173.2394366197183"/>
         </scene>
     </scenes>
 </document>

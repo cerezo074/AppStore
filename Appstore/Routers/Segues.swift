@@ -12,4 +12,5 @@ import UIKit
 struct Segues {
     static let listApps = "ListApps"
     static let appDetail = "AppDetail"
+    static let categories = "Categories"
 }

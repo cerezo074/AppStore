@@ -14,4 +14,5 @@ protocol DiskRepositoryProtocol {
     typealias PerformTaskWithMultipleResultBlock = (_ result: [Any]?, _ error: Error?) -> Void
     func saveApps(apps: [App], completion: @escaping PerformTaskBlock)
     func loadApps() -> [App]?
+    func getCategories(completion: @escaping PerformTaskWithMultipleResultBlock)
 }

@@ -40,6 +40,11 @@ struct AppstoreFlowController {
             prepareForDetail(with: app,
                              sourceVC: source,
                              destinationVC: destination)
+            break
+        case Segues.categories:
+            prepareForCategories(sourceVC: source,
+                                 destinationVC: destination)
+            break
         default:
             return
         }
@@ -100,6 +105,26 @@ private extension AppstoreFlowController {
         appDetailVC.flowDelegate = self
     }
     
+    func prepareForCategories(sourceVC: UIViewController, destinationVC: UIViewController){
+        guard let navVC = destinationVC as? UINavigationController,
+        let categoriesVC = navVC.viewControllers.first as? CategoriesViewController else {
+            return
+        }
+        guard let listAppsVC = sourceVC as? ListAppsViewController else { return }
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let appsCoreDataStack = appDelegate.appsCoreDataStack else {
+                return
+        }
+        
+        let repositoryServer = AppsCoreDataDAO(dataSource: appsCoreDataStack)
+        let categoriesPresenter = CategoriesPresenter(repositoryService: repositoryServer,
+                                                      categoriesView: categoriesVC,
+                                                      sortDelegate: listAppsVC.listAppsPresenter)
+        categoriesVC.categoriesPresenter = categoriesPresenter
+        categoriesVC.flowDelegate = self
+    }
+    
     func hideNavBar(hide: Bool) {
         guard let navVC = rootVC as? UINavigationController else {
             return
@@ -120,6 +145,10 @@ extension AppstoreFlowController: ListViewControllerFlowDelegate {
     func detailWasTouched(on listVC: ListAppsViewController, app: App) {
         listVC.performSegue(withIdentifier: Segues.appDetail, sender: app)
     }
+    
+    func categoryWasTouched(on listVC: ListAppsViewController) {
+        listVC.performSegue(withIdentifier: Segues.categories, sender: nil)
+    }
 }
 
 extension AppstoreFlowController: AppDetailViewControllerFlowDelegate {
@@ -127,5 +156,11 @@ extension AppstoreFlowController: AppDetailViewControllerFlowDelegate {
         guard let navVC = appDetail.navigationController else { return }
         navVC.popViewController(animated: true)
         hideNavBar(hide: false)
+    }
+}
+
+extension AppstoreFlowController: CategoriesViewControllerFlowDelegate {
+    func userHasSelectedCategory(on categoyVC: CategoriesViewController) {
+        categoyVC.dismiss(animated: true, completion: nil)
     }
 }

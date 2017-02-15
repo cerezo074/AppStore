@@ -23,8 +23,13 @@ protocol SyncViewControllerFlowDelegate: BaseFlow {
 
 protocol ListViewControllerFlowDelegate: BaseFlow {
     func detailWasTouched(on listVC: ListAppsViewController, app: App)
+    func categoryWasTouched(on listVC: ListAppsViewController)
 }
 
 protocol AppDetailViewControllerFlowDelegate: BaseFlow {
     func userPressBackButton(on appDetail: AppDetailViewController)
+}
+
+protocol CategoriesViewControllerFlowDelegate: BaseFlow {
+    func userHasSelectedCategory(on categoyVC: CategoriesViewController)
 }

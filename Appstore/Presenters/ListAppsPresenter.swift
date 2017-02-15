@@ -12,15 +12,35 @@ import UIKit
 protocol ListAppViewProtocol: class {
     func appIconDownloaded(index: IndexPath)
     func appIconNotDownloaded(index: IndexPath)
+    func categoyWasSelected()
 }
 
-struct ListAppsPresenter {
+class ListAppsPresenter {
     
     fileprivate unowned let listAppView: ListAppViewProtocol
-    private(set) var apps: [App]
+    fileprivate let apps: [App]
     private let imageDownloader: ImageDownloaderProtocol
     private let placeHolder = UIImage(named: "placeholder")
     private let notFoundedImage =  UIImage(named: "image_not_founded")
+    fileprivate(set) var selectedCategory: String?
+    fileprivate(set) var selectAppsFromCategegory = false
+    var appsWithCategorySelected: [App] {
+        guard let categoryToFilter = selectedCategory else {
+            return []
+        }
+        let categoriesFiltered = apps.filter({ app -> Bool in
+            return app.category == categoryToFilter
+        })
+        if categoriesFiltered.count == 0 {
+            return []
+        }
+        
+        return categoriesFiltered
+    }
+    
+    var appsForConsume: [App] {
+        return selectAppsFromCategegory ? appsWithCategorySelected : apps
+    }
     
     init(apps: [App], listAppView: ListAppViewProtocol,imageDownloader: ImageDownloaderProtocol) {
         self.apps = apps
@@ -29,9 +49,9 @@ struct ListAppsPresenter {
     }
     
     func getImageForApp(index: IndexPath) -> UIImage? {
-        let app = apps[index.row]
+        let app = appsForConsume[index.row]
 
-        guard let iconURL = apps[index.row].iconURL else {
+        guard let iconURL = appsForConsume[index.row].iconURL else {
             return placeHolder
         }
         
@@ -39,14 +59,14 @@ struct ListAppsPresenter {
         
         guard let icon = imageDownloader.image(withIdentifier: iconURL.absoluteString) else {
             imageDownloader.downloadImage(urlRequest: iconUrlRequest, completionBlock: {
-                [weak app, weak notFoundedImage] (iconImage, error) in
+                [weak self, weak app, weak notFoundedImage] (iconImage, error) in
                 guard let image = iconImage else {
                     app?.image = notFoundedImage
-                    self.listAppView.appIconNotDownloaded(index: index)
+                    self?.listAppView.appIconNotDownloaded(index: index)
                     return
                 }
                 app?.image = image
-                self.listAppView.appIconDownloaded(index: index)
+                self?.listAppView.appIconDownloaded(index: index)
             })
             
             return placeHolder
@@ -76,4 +96,17 @@ extension ListAppsPresenter: AppIconDelegate {
         }
     }
     
+}
+
+extension ListAppsPresenter: CategoriesSortDelegate {
+
+    var allCategory: String {
+        return "All categories"
+    }
+        
+    func categoryWasSelected(category: String) {
+        selectedCategory = category
+        selectAppsFromCategegory = category == allCategory ? false : true
+        listAppView.categoyWasSelected()
+    }
 }

@@ -11,6 +11,7 @@ import CoreData
 
 struct AppsCoreDataDAO: DiskRepositoryProtocol {
     
+    fileprivate let categoryKey = "category"
     fileprivate let appEntityName = "AppEntity"
     fileprivate let dataSource: CoreDataSourceStackProtocol
     
@@ -61,6 +62,43 @@ struct AppsCoreDataDAO: DiskRepositoryProtocol {
 }
 
 extension AppsCoreDataDAO: BasicDAO {
+    
+    func getCategories(completion: @escaping DiskRepositoryProtocol.PerformTaskWithMultipleResultBlock) {
+        let readContext = dataSource.readContext()
+        let allCategoriesRequest = NSFetchRequest<NSFetchRequestResult>(entityName: appEntityName)
+        allCategoriesRequest.resultType = .dictionaryResultType
+        allCategoriesRequest.returnsDistinctResults = true
+        allCategoriesRequest.propertiesToFetch = [categoryKey]
+        
+        DispatchQueue.main.async {
+            
+            do {
+                let rawCategories = try readContext.fetch(allCategoriesRequest)
+                guard let categoriesArrayDict = rawCategories as? [NSDictionary],
+                let categories = self.parseCategoryArrayDict(on: categoriesArrayDict) else {
+                    let error = AppsCoreDataDAO.createError("Sorry something wrong happen reading categories, try later please")
+                    completion(nil, error)
+                    return
+                }
+                completion(categories, nil)
+            } catch {
+                print(error)
+                completion(nil, error)
+            }
+        }
+    }
+    
+    private func parseCategoryArrayDict(on array:[NSDictionary]) -> [String]? {
+        var categoriesArray: [String] = []
+        
+        for categoryDict in array {
+            if let category = categoryDict.object(forKey: categoryKey) as? String {
+                categoriesArray.append(category)
+            }
+        }
+        
+        return categoriesArray
+    }
     
     fileprivate func createAppEntity(app: App, context: NSManagedObjectContext) {
         guard let newEntity = NSEntityDescription.insertNewObject(forEntityName: appEntityName, into: context) as? AppEntity else {

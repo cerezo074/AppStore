@@ -16,11 +16,13 @@ protocol SycnViewProtocol: class {
 
 struct SyncPresenter {
     
-    unowned let syncView: SycnViewProtocol
-    let itunesService: ItunesServiceProtocol
-    let repositoryService: DiskRepositoryProtocol
+    private unowned let syncView: SycnViewProtocol
+    private let itunesService: ItunesServiceProtocol
+    private let repositoryService: DiskRepositoryProtocol
     
-    init(syncView: SycnViewProtocol, itunesService: ItunesServiceProtocol, repositoryService: DiskRepositoryProtocol) {
+    init(syncView: SycnViewProtocol,
+         itunesService: ItunesServiceProtocol,
+         repositoryService: DiskRepositoryProtocol) {
         self.syncView = syncView
         self.itunesService = itunesService
         self.repositoryService = repositoryService

@@ -26,5 +26,9 @@ class AppCollectionViewCell: UICollectionViewCell {
         appIconImageView.clipsToBounds = true
         appIconImageView.layer.cornerRadius = 10
     }
+    
+    override func prepareForReuse() {
+        appIconImageView.image = nil
+    }
 
 }
