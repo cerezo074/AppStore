@@ -10,9 +10,9 @@ import UIKit
 
 class AppListView: UIView {
     
-    private weak var appsTableView: AppsTableView?
-    private weak var appsCollectionView: AppsCollectionView?
-    private var pendingReload = false
+    fileprivate weak var appsTableView: AppsTableView?
+    fileprivate weak var appsCollectionView: AppsCollectionView?
+    fileprivate var failsIndexPendings: Set<IndexPath> = []
     
     init(tableDelegate: AppListTableViewProtocol,
          collectionDelegate: AppListCollectionViewProtocol) {
@@ -39,14 +39,21 @@ class AppListView: UIView {
     }
     
     func shouldReload() {
-        if pendingReload {
-            if shouldUseTable() {
-                appsTableView?.reloadData()
-            } else {
-                appsCollectionView?.reloadData()
+        var indexPreparedForLoad: Set<IndexPath> = []
+        
+        for failIndex in failsIndexPendings {
+            if indexShouldReload(index: failIndex) {
+                indexPreparedForLoad.insert(failIndex)
             }
-            pendingReload = false
         }
+        
+        if shouldUseTable() {
+            appsTableView?.reloadRows(at: Array(indexPreparedForLoad), with: .fade)
+        } else {
+            appsCollectionView?.reloadItems(at: Array(indexPreparedForLoad))
+        }
+        
+        failsIndexPendings = indexPreparedForLoad.subtracting(failsIndexPendings)
     }
     
     func reload() {
@@ -56,14 +63,14 @@ class AppListView: UIView {
             appsCollectionView?.reloadData()
         }
     }
-
-    func shouldReloadContent(at index: IndexPath) {
-        
+    
+    func shouldReloadContent(at index: IndexPath,
+                             image: UIImage?) {
         if shouldUseTable() {
             guard let tableView = appsTableView,
                 let visibleIndexes = tableView.indexPathsForVisibleRows,
                 (!tableView.isDragging && !tableView.isDecelerating) else {
-                    pendingReload = true
+                    failsIndexPendings.insert(index)
                     return
             }
             
@@ -73,12 +80,17 @@ class AppListView: UIView {
             }
             
             if visibleIndexes.contains(where: containIndexBlockOperation) {
-                tableView.reloadRows(at: [index], with: .automatic)
+                guard let cell = tableView.cellForRow(at: index) as? AppListViewContentCell else {
+                    print("Cell not conform AppListViewContentCell protocol, at index:\(index)")
+                    return
+                }
+                failsIndexPendings.remove(index)
+                cell.appIconImage.image = image
             }
         } else {
             guard let collectionView = appsCollectionView,
             (!collectionView.isDragging && !collectionView.isDecelerating)else {
-                pendingReload = true
+                failsIndexPendings.insert(index)
                 return
             }
             
@@ -89,10 +101,14 @@ class AppListView: UIView {
             }
             
             if visibleIndexes.contains(where: containIndexBlockOperation) {
-                collectionView.reloadItems(at: [index])
+                guard let cell = collectionView.cellForItem(at: index) as? AppListViewContentCell else {
+                    print("Cell not conform AppListViewContentCell protocol, at index:\(index)")
+                    return
+                }
+                cell.appIconImage.image = image
+                failsIndexPendings.remove(index)
             }
         }
-        
     }
     
     override func didMoveToSuperview() {
@@ -108,4 +124,18 @@ private extension AppListView {
         return UIDevice.current.userInterfaceIdiom == .phone
     }
 
+    func indexShouldReload(index: IndexPath) -> Bool {
+        if failsIndexPendings.contains(index) {
+            if let visibleIndexesPaths = appsTableView?.indexPathsForVisibleRows {
+                return visibleIndexesPaths.contains(index)
+            }
+            
+            if let visibleIndexesPaths = appsCollectionView?.indexPathsForVisibleItems {
+                return visibleIndexesPaths.contains(index)
+            }
+        }
+        
+        return false
+    }
+    
 }

@@ -158,12 +158,12 @@ extension ListAppsViewController {
 
 extension ListAppsViewController: ListAppViewProtocol {
 
-    func appIconDownloaded(index: IndexPath) {
-        appListView?.shouldReloadContent(at: index)
+    func appIconDownloaded(index: IndexPath, image: UIImage?) {
+        appListView?.shouldReloadContent(at: index, image: image)
     }
     
-    func appIconNotDownloaded(index: IndexPath) {
-        appListView?.shouldReloadContent(at: index)
+    func appIconNotDownloaded(index: IndexPath, image: UIImage?) {
+        appListView?.shouldReloadContent(at: index, image: image)
     }
     
     func categoyWasSelected() {

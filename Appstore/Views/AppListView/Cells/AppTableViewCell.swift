@@ -8,13 +8,17 @@
 
 import UIKit
 
-class AppTableViewCell: UITableViewCell {
+class AppTableViewCell: UITableViewCell, AppListViewContentCell {
 
     @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet weak var appTypeLabel: UILabel!
     @IBOutlet weak var appArtistLabel: UILabel!
     @IBOutlet weak var appPriceLabel: UILabel!
     @IBOutlet weak var appIconImageView: UIImageView!
+    
+    var appIconImage: UIImageView {
+        return appIconImageView
+    }
     
     class var identifier: String {
         return "AppTableViewCell"

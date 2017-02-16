@@ -8,10 +8,14 @@
 
 import UIKit
 
-class AppCollectionViewCell: UICollectionViewCell {
+class AppCollectionViewCell: UICollectionViewCell, AppListViewContentCell{
 
     @IBOutlet weak var appIconImageView: UIImageView!
     @IBOutlet weak var appTitleLabel: UILabel!
+    
+    var appIconImage: UIImageView {
+        return appIconImageView
+    }
     
     class var identifier: String {
         return "AppCollectionViewCell"

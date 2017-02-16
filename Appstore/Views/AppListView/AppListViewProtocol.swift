@@ -43,3 +43,7 @@ protocol AppListCollectionViewProtocol: UICollectionViewDataSource, UICollection
     var collectionCellReuseIdentifier: String { get }
     var collectionCellNibName: String { get }
 }
+
+protocol AppListViewContentCell {
+    var appIconImage: UIImageView { get }
+}

@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 protocol ListAppViewProtocol: class {
-    func appIconDownloaded(index: IndexPath)
-    func appIconNotDownloaded(index: IndexPath)
+    func appIconDownloaded(index: IndexPath, image: UIImage?)
+    func appIconNotDownloaded(index: IndexPath, image: UIImage?)
     func categoyWasSelected()
 }
 
@@ -63,11 +63,11 @@ class ListAppsPresenter {
                 [weak self, weak app, weak notFoundedImage] (iconImage, error) in
                 guard let image = iconImage else {
                     app?.image = notFoundedImage
-                    self?.listAppView.appIconNotDownloaded(index: index)
+                    self?.listAppView.appIconNotDownloaded(index: index, image: notFoundedImage)
                     return
                 }
                 app?.image = image
-                self?.listAppView.appIconDownloaded(index: index)
+                self?.listAppView.appIconDownloaded(index: index, image: image)
             })
             
             return placeHolder
@@ -88,7 +88,7 @@ extension ListAppsPresenter: AppIconDelegate {
         
         let indexPath = UIDevice.current.userInterfaceIdiom == .phone ?
             IndexPath(row: index, section: 0) : IndexPath(item: index, section: 0)
-        listAppView.appIconDownloaded(index: indexPath)
+        listAppView.appIconDownloaded(index: indexPath, image: app.image)
     }
     
     func indexForApp(appId: String) -> Int? {
