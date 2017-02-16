@@ -123,6 +123,10 @@ private extension AppstoreFlowController {
                                                       sortDelegate: listAppsVC.listAppsPresenter)
         categoriesVC.categoriesPresenter = categoriesPresenter
         categoriesVC.flowDelegate = self
+//        let newAnchorViewPoint = listAppsVC.view.center
+//        navVC.popoverPresentationController.
+//        navVC.popoverPresentationController?.sourceRect = CGRect(x: newAnchorViewPoint.x, y: newAnchorViewPoint.y, width: navVC.view.bounds.width, height: navVC.view.bounds.height)
+//        navVC.popoverPresentationController?.sourceRect = CGRect(x:newAnchorViewPoint.x, y:newAnchorViewPoint.y, width: 0, height: 0)
     }
     
     func hideNavBar(hide: Bool) {
